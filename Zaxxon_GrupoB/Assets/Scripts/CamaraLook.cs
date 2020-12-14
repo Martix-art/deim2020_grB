@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CamaraLook : MonoBehaviour
 {
-    [SerializeField] Transform Tarjet;
+    [SerializeField] Transform Target;
    
 
     // Start is called before the first frame update
@@ -16,6 +16,7 @@ public class CamaraLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(Tarjet.position.x, Tarjet.position.y, Tarjet.position.z - 3);
+        //Estas líneas de código hacen que la cámara siga al objeyivo
+        transform.position = new Vector3(Target.position.x, Target.position.y +1.5f , Target.position.z - 3);
     }
 }
