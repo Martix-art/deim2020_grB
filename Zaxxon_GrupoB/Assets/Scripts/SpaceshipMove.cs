@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //Importante importar esta librería para usar la UI
 
+
 public class SpaceshipMove : MonoBehaviour
 {
     //--SCRIPT PARA MOVER LA NAVE --//
@@ -122,5 +123,8 @@ public class SpaceshipMove : MonoBehaviour
         //transform.rotation permitimos la arotacion en z, pero si no se mueve el joystick esta permanece horizontal
         //50 es el angulo maximo de inclinacion
         transform.rotation = Quaternion.Euler(0, 0, desplX * -50);
+    }
+
+  
     }
 }
