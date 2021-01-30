@@ -92,7 +92,6 @@ public class SpaceshipMove : MonoBehaviour
         */
         //Variable float que obtiene el valor del eje horizontal y vertical
         float desplX = Input.GetAxis("Horizontal");
-
         if (transform.position.x < -5.6f && desplX < 0)
         {
             desplX = 0f;
@@ -101,7 +100,7 @@ public class SpaceshipMove : MonoBehaviour
         {
             desplX = 0f;
         }
-        transform.Translate(Vector3.right * Time.deltaTime * moveSpeed * desplX);
+        
         float desplY = Input.GetAxis("Vertical");
 
         if (transform.position.y < 0f && desplY < 0)
@@ -112,11 +111,16 @@ public class SpaceshipMove : MonoBehaviour
         {
             desplY = 0f;
         }
-        transform.Translate(Vector3.up * Time.deltaTime * moveSpeed * desplY);
+        
 
         //Movemos la nave mediante el método transform.translate
         //Lo multiplicamos por deltaTime, el eje y la velocidad de movimiento la nave
-        transform.Translate(Vector3.right * Time.deltaTime * moveSpeed * desplX);
-        transform.Translate(Vector3.up * Time.deltaTime * moveSpeed * desplY); 
+        //Space.World es lo que hace que la nave gire entorno a su eje al realizar los giros
+        transform.Translate(Vector3.right * Time.deltaTime * moveSpeed * desplX, Space.World);
+        transform.Translate(Vector3.up * Time.deltaTime * moveSpeed * desplY, Space.World);
+
+        //transform.rotation permitimos la arotacion en z, pero si no se mueve el joystick esta permanece horizontal
+        //50 es el angulo maximo de inclinacion
+        transform.rotation = Quaternion.Euler(0, 0, desplX * -50);
     }
 }
