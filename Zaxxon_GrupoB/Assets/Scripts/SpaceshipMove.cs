@@ -20,7 +20,10 @@ public class SpaceshipMove : MonoBehaviour
     [SerializeField] Text TextDistance;
     //Variable para parar el juego
     [SerializeField] MeshRenderer myMesh;
-
+    //capturar canvas game over
+    public GameObject Canvas;
+    //capturas scrpt canvas game over
+    private GameOver gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,9 @@ public class SpaceshipMove : MonoBehaviour
         speed = 3f;
         //Llamo a la corrutina que hace aumentar la velocidad
         StartCoroutine("Distancia");
-        
+        //cuando nos chocamos sale el canvas de game over
+        gameOver = GetComponent<GameOver>();
+
     }
    
     // Update is called once per frame
@@ -49,6 +54,8 @@ public class SpaceshipMove : MonoBehaviour
             speed = 0f;
             //la corutine se para
             StopCoroutine("Distancia");
+            //aparece game over
+            Canvas.SetActive(true);
         }
 
     }
@@ -70,11 +77,10 @@ public class SpaceshipMove : MonoBehaviour
             }
            
             //Ejecuto cada ciclo esperando 1 segundo
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.50f);
         }
         
     }
-
 
 
     void MoverNave()
@@ -125,6 +131,4 @@ public class SpaceshipMove : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, desplX * -50);
     }
 
-  
-    }
 }
