@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; //Importante importar esta librería para usar la UI
+using UnityEngine.UI; //Importante importa esta librería para usar la UI
 
 
 public class SpaceshipMove : MonoBehaviour
@@ -15,14 +15,15 @@ public class SpaceshipMove : MonoBehaviour
     //Variable que determina cómo de rápido se mueve la nave con el joystick
     //De momento fija, ya veremos si aumenta con la velocidad o con powerUps
     private float moveSpeed = 3f;
-
     //Capturo el texto del UI que indicará la distancia recorrida
     [SerializeField] Text TextDistance;
+    //Capturo el texto del UI que indicará la velocidad
+    [SerializeField] Text TextSpeed;
     //Variable para parar el juego
     [SerializeField] MeshRenderer myMesh;
     //capturar canvas game over
-    public GameObject Canvas;
-    //capturas scrpt canvas game over
+    public GameObject Pantalla;
+    //capturas script canvas game over
     private GameOver gameOver;
 
     // Start is called before the first frame update
@@ -31,9 +32,12 @@ public class SpaceshipMove : MonoBehaviour
         speed = 3f;
         //Llamo a la corrutina que hace aumentar la velocidad
         StartCoroutine("Distancia");
+        //llamo a la corrutina velocidad
+        StartCoroutine("Speed");
         //cuando nos chocamos sale el canvas de game over
         gameOver = GetComponent<GameOver>();
-
+        
+        
     }
    
     // Update is called once per frame
@@ -54,10 +58,15 @@ public class SpaceshipMove : MonoBehaviour
             speed = 0f;
             //la corutine se para
             StopCoroutine("Distancia");
-            //aparece game over
-            Canvas.SetActive(true);
+            //invocar el menu de game over
+            Invoke("MostrarPantalla", 2f);
         }
 
+    }
+    void MostrarPantalla()
+    {
+        //aparece game over
+        Pantalla.SetActive(true);
     }
 
     //Corrutina que hace cambiar el texto de distancia
@@ -67,21 +76,30 @@ public class SpaceshipMove : MonoBehaviour
         //El segundo parámetro está vacío, por eso es infinito
         for(int n = 0; ; n += 1)
         {
+            float distance;
+            distance = n * speed;
             //Cambio el texto que aparece en pantalla
-            TextDistance.text = "DISTANCIA: " + n * speed;
-
+            TextDistance.text = "DISTANCE - " + distance.ToString("F0");
+            
             //cada ciclo aumenta la velocidad
-            if(speed < 26)
+            if(speed < 26f)
             {
-                speed = speed + 0.3f;
+                speed = speed + 0.2f;
             }
            
             //Ejecuto cada ciclo esperando 1 segundo
-            yield return new WaitForSeconds(0.50f);
+            yield return new WaitForSeconds(0.25f);
         }
         
     }
-
+    IEnumerator Speed()
+    {
+        for (int s = 0; ; s += 5)
+        {
+            TextSpeed.text = "SPEED - " + (speed * 5f).ToString("F0");
+            yield return new WaitForSeconds(1f);    
+        }
+    }
 
     void MoverNave()
     {
@@ -114,7 +132,7 @@ public class SpaceshipMove : MonoBehaviour
         {
             desplY = 0f;
         }
-        else if (transform.position.y > 3f && desplY > 0)
+        else if (transform.position.y > 4f && desplY > 0)
         {
             desplY = 0f;
         }

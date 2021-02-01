@@ -17,6 +17,6 @@ public class CamaraLook : MonoBehaviour
     void Update()
     {
         //Estas líneas de código hacen que la cámara siga al objeyivo
-        transform.position = new Vector3(Target.position.x, Target.position.y +1.5f , Target.position.z - 3);
+        transform.position = new Vector3(Target.position.x, Target.position.y +1.5f , Target.position.z - 5);
     }
 }
