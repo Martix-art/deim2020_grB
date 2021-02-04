@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuPlay : MonoBehaviour
 {
+   
     //boton play para ir a la escena de zaxxon y jugar
     public void Play()
     {
