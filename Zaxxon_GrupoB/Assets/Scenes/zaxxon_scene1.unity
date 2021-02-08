@@ -1707,8 +1707,10 @@ MonoBehaviour:
   speed: 1
   TextDistance: {fileID: 585907812}
   TextSpeed: {fileID: 1442527038}
-  myMesh: {fileID: 1659757361}
   Pantalla: {fileID: 1198652811}
+  explosionPrefab: {fileID: 428320, guid: 578c7b5ceacee2f4ca4c7b9c1ec31b75, type: 3}
+  SpaceShip: {fileID: 1971948391}
+  Renderizado: []
 --- !u!4 &1971948393 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3e0be440c5e99b04389771630d1f6f60,

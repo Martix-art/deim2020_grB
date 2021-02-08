@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //Importante importa esta librería para usar la UI
+using UnityEngine.Rendering;
 
 
 public class SpaceshipMove : MonoBehaviour
@@ -20,11 +21,15 @@ public class SpaceshipMove : MonoBehaviour
     //Capturo el texto del UI que indicará la velocidad
     [SerializeField] Text TextSpeed;
     //Variable para parar el juego
-    [SerializeField] MeshRenderer myMesh;
+    //[SerializeField] MeshRenderer myMesh;
     //capturar canvas game over
     public GameObject Pantalla;
     //capturas script canvas game over
     private GameOver gameOver;
+    //variables para la explosion de la nave
+    public Transform explosionPrefab;
+    public GameObject SpaceShip;
+    public Component[] Renderizado;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +41,9 @@ public class SpaceshipMove : MonoBehaviour
         StartCoroutine("Speed");
         //cuando nos chocamos sale el canvas de game over
         gameOver = GetComponent<GameOver>();
-        
-        
+        //
+        SpaceShip = GameObject.Find("Spaceship");
+       
     }
    
     // Update is called once per frame
@@ -48,21 +54,31 @@ public class SpaceshipMove : MonoBehaviour
 
     }
     //codigo para la colision
-    private void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "obstacle")
-        {
-            //desaparece la maya
-            myMesh.enabled = false;
-            //la velocidad se para
-            speed = 0f;
-            //la corutine se para
-            StopCoroutine("Distancia");
-            //invocar el menu de game over
-            Invoke("MostrarPantalla", 2f);
-        }
+        
+        //desaparece la maya de la nave
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        Vector3 position = contact.point;
+        Instantiate(explosionPrefab, position, rotation);
+
+        Renderer[] rs = SpaceShip.GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in rs)
+        r.enabled = false;
+
+        //la velocidad se para
+        speed = 0f;
+        //la corutine se para
+        StopCoroutine("Distancia");
+        //invocar el menu de game over
+        Invoke("MostrarPantalla", 2.5f);
+
+
+        
 
     }
+
     void MostrarPantalla()
     {
         //aparece game over
