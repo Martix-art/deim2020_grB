@@ -41,7 +41,7 @@ public class SpaceshipMove : MonoBehaviour
         StartCoroutine("Speed");
         //cuando nos chocamos sale el canvas de game over
         gameOver = GetComponent<GameOver>();
-        //
+        //llamanos al objeto de la nave
         SpaceShip = GameObject.Find("Spaceship");
        
     }
