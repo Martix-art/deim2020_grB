@@ -72,10 +72,7 @@ public class SpaceshipMove : MonoBehaviour
         //la corutine se para
         StopCoroutine("Distancia");
         //invocar el menu de game over
-        Invoke("MostrarPantalla", 2.5f);
-
-
-        
+        Invoke("MostrarPantalla", 3.15f);
 
     }
 
