@@ -30,6 +30,9 @@ public class SpaceshipMove : MonoBehaviour
     public Transform explosionPrefab;
     public GameObject SpaceShip;
     public Component[] Renderizado;
+    public AudioSource motor;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,8 @@ public class SpaceshipMove : MonoBehaviour
         gameOver = GetComponent<GameOver>();
         //llamanos al objeto de la nave
         SpaceShip = GameObject.Find("Spaceship");
+        //variable sonido motor
+        motor = GetComponent<AudioSource>();
        
     }
    
@@ -72,7 +77,9 @@ public class SpaceshipMove : MonoBehaviour
         //la corutine se para
         StopCoroutine("Distancia");
         //invocar el menu de game over
-        Invoke("MostrarPantalla", 3.15f);
+        Invoke("MostrarPantalla", 4.5f);
+        //parar sonido motor
+        motor.Stop();
 
     }
 

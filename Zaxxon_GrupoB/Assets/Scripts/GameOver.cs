@@ -8,11 +8,13 @@ public class GameOver : MonoBehaviour
 {
     //capturamos el canvas
     public GameObject gameOver;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         gameOver.SetActive(false);
+
     }
 
     //boton replay, vuelves a jugar
