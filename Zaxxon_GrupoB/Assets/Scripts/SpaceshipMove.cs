@@ -30,9 +30,13 @@ public class SpaceshipMove : MonoBehaviour
     public Transform explosionPrefab;
     public GameObject SpaceShip;
     public Component[] Renderizado;
+    //variables para acceder al sonido motores
     public AudioSource motor;
+    //variables para acceder al sonido explosion
+    [SerializeField] AudioClip explosiSound;
+    private AudioSource audioSource;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +52,10 @@ public class SpaceshipMove : MonoBehaviour
         SpaceShip = GameObject.Find("Spaceship");
         //variable sonido motor
         motor = GetComponent<AudioSource>();
-       
+        //acceder al componente del audio
+        audioSource = GetComponent<AudioSource>();
+
+        
     }
    
     // Update is called once per frame
@@ -80,6 +87,8 @@ public class SpaceshipMove : MonoBehaviour
         Invoke("MostrarPantalla", 4.5f);
         //parar sonido motor
         motor.Stop();
+        //suena sonido explosion
+        audioSource.PlayOneShot(explosiSound);
 
     }
 
