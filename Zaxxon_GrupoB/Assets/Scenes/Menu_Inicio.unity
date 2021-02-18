@@ -579,7 +579,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b5bc10f4d9bd65243b56e20218638cf8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.004
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -746,7 +746,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2005885264}
-        m_MethodName: HIGHSCORE
+        m_MethodName: HighScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a183431e7bc95744b930f36f9532755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioButton: {fileID: 8300000, guid: ed0d9e3d23970404bbd3cb2e2108ac57, type: 3}
+  audioButton: {fileID: 8300000, guid: 02fab8589f2407549ad0ff69b8f3615b, type: 3}
 --- !u!82 &2005885265
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1146,9 +1146,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ed0d9e3d23970404bbd3cb2e2108ac57, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 02fab8589f2407549ad0ff69b8f3615b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

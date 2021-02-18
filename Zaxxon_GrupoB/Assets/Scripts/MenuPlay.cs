@@ -21,18 +21,30 @@ public class MenuPlay : MonoBehaviour
     {
         //suena un sonido cuando es pulsado
         audioSource.PlayOneShot(audioButton);
-        //te lleva a una escena
-        SceneManager.LoadScene("zaxxon_scene1");
+        //te lleva a una escena y despues del audio
+        Invoke("CargarEscenaG", audioButton.length);
+        
     }
 
-    //boton highscore para ir a la escena de puntuacion 
-    public void HIGHSCORE()
+    //boton play para ir a la escena de HighScore
+    public void HighScore()
     {
         //suena un sonido cuando es pulsado
         audioSource.PlayOneShot(audioButton);
-        //te lleva a una escena
+        //te lleva a una escena y despues del audio
+        Invoke("CargarEscenaHS", audioButton.length);
+        
+    }
+    
+    //cargar la escena
+    void CargarEscenaHS()
+    {
         SceneManager.LoadScene("Menu_HighScore");
-
+    }
+    //cargar la escena
+    void CargarEscenaG()
+    {
+        SceneManager.LoadScene("zaxxon_scene1");
     }
 }
 

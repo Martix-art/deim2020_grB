@@ -25,8 +25,9 @@ public class GameOver : MonoBehaviour
     {
         //suena un sonido cuando es pulsado
         audioSource.PlayOneShot(audioButton);
-        //te lleva a una escena
-        SceneManager.LoadScene("zaxxon_scene1");
+        //te lleva a una escena y despues del audio
+        Invoke("CargarEscenaZ", audioButton.length);
+
     }
 
     //boton exit sales a la escena principal
@@ -34,7 +35,18 @@ public class GameOver : MonoBehaviour
     {
         //suena un sonido cuando es pulsado
         audioSource.PlayOneShot(audioButton);
-        //te lleva a una escena
+        //te lleva a una escena y despues del audio
+        Invoke("CargarEscenaE", audioButton.length);
+    }
+
+    //cargar la escena
+    void CargarEscenaZ()
+    {
+        SceneManager.LoadScene("zaxxon_scene1");
+    }
+    //cargar la escena
+    void CargarEscenaE()
+    {
         SceneManager.LoadScene("Menu_Inicio");
     }
 }
